@@ -1,6 +1,8 @@
 package com.app.entity;
 
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.Entity;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import java.util.Set;
 
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="Student")
 public class Student {
 

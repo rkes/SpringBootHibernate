@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@Transactional
 public class SchoolService {
 
     @Autowired
@@ -34,5 +35,8 @@ public class SchoolService {
         transaction.commit();
         return true;
     }
-
+    public Student getStudent(String rollNum){
+        Session session=sessionFactory.getCurrentSession();
+        return (Student) session.get(Student.class,rollNum);
+    }
 }

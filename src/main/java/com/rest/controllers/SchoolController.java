@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -31,5 +28,9 @@ public class SchoolController {
     public ResponseEntity addStudent(@RequestBody Student student){
         schoolService.addStudentToClass(student);
         return new ResponseEntity(HttpStatus.OK);
+    }
+    @RequestMapping(value="/getStudent",method = RequestMethod.GET)
+    public ResponseEntity getStudent(@RequestParam("id") String rollNum){
+        return new ResponseEntity(schoolService.getStudent(rollNum),HttpStatus.OK);
     }
 }
